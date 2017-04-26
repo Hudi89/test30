@@ -51,7 +51,8 @@ public class Main {
     @Test
     public void testLogin(){
         MainPageWithoutLogin mainPageWithoutLogin = new MainPageWithoutLogin(driver);
-        MainPage mainPage = mainPageWithoutLogin.login("hudi89@elte.hu","test");
+        LoginPopup loginPopup = mainPageWithoutLogin.openLoginPopup();
+        MainPage mainPage = loginPopup.login("hudi89@elte.hu","test");
         assertTrue("Bad Username after logged in. ",mainPage.getUsername().equals("Peter"));
     }
 
@@ -60,7 +61,7 @@ public class Main {
     static{
         simplePageTexts = new ArrayList<SimplePageTest>();
         simplePageTexts.add(new SimplePageTest("https://doodle.com/premium",By.xpath("//h1"), "Premium Doodle"));
-        simplePageTexts.add(new SimplePageTest("https://doodle.com/features",By.xpath("//h2"),"Products and features"));
+        simplePageTexts.add(new  SimplePageTest("https://doodle.com/features",By.xpath("//h2"),"Products and features"));
     }
 
     @Test
