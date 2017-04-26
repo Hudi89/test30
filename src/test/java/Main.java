@@ -55,13 +55,6 @@ public class Main {
         assertTrue("Bad Username after logged in. ",mainPage.getUsername().equals("Peter"));
     }
 
-    @Test
-    public void createAnEvent(){
-        MainPageWithoutLogin mainPageWithoutLogin = new MainPageWithoutLogin(driver);
-        MainPage mainPage = mainPageWithoutLogin.login("hudi89@elte.hu","test");
-        assertTrue("Bad Username after logged in. ",mainPage.getUsername().equals("Peter"));
-    }
-
 
     final static List<SimplePageTest> simplePageTexts;
     static{
