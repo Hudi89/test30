@@ -1,3 +1,5 @@
+package tests;
+
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.After;
 import org.junit.Before;
@@ -7,10 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageobjects.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
@@ -44,7 +46,7 @@ public class Main {
 
     @Test
     public void testLogin(){
-        MainPageWithoutLogin mainPageWithoutLogin = new MainPageWithoutLogin(driver);
+        MainPageWithoutLogin mainPageWithoutLogin = MainPageWithoutLogin.open(driver);
         LoginPopup loginPopup = mainPageWithoutLogin.openLoginPopup();
         MainPage mainPage = loginPopup.login("hudi89@elte.hu","test");
         assertTrue("Bad Username after logged in. ",mainPage.getUsername().equals("Peter"));
@@ -52,11 +54,12 @@ public class Main {
 
     @Test
     public void testCreateChoice(){
-        MainPageWithoutLogin mainPageWithoutLogin = new MainPageWithoutLogin(driver);
+        MainPageWithoutLogin mainPageWithoutLogin = MainPageWithoutLogin.open(driver);
         LoginPopup loginPopup = mainPageWithoutLogin.openLoginPopup();
         MainPage mainPage = loginPopup.login("hudi89@elte.hu","test");
+
         ChoicePage choicePage = mainPage.clickToMakeAChoiceButton();
-        CreationFinishedPage finishedPage = choicePage.createAnChoice("test",new ArrayList<String>(Arrays.asList("A","B","C")));
+        CreationFinishedPage finishedPage = choicePage.createAChoice("test",new ArrayList<String>(Arrays.asList("A","B","C")));
         wait.until(finishedPage.getInitializationCondition());
     }
 }

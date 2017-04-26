@@ -1,23 +1,26 @@
+package pageobjects;
+
+import base.BasePageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by hudi on 2017.04.26..
  */
-public class LoginPopup {
-    WebDriver driver;
-    Wait<WebDriver> wait;
+public class LoginPopup extends BasePageObject {
 
     By usernameInputLocator = By.id("logisterEmail");
     By passwordInputLocator = By.id("logisterPassword");
 
     public LoginPopup(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver,10);
+        super(driver);
+    }
+
+    public ExpectedCondition<WebElement> getInitializationCondition() {
+        return ExpectedConditions.visibilityOfElementLocated(usernameInputLocator);
     }
 
     public MainPage login(String username, String password) {
@@ -29,6 +32,6 @@ public class LoginPopup {
 
         usernameInput.submit();
 
-        return new MainPage(driver);
+        return (MainPage) new MainPage(driver).init();
     }
 }
