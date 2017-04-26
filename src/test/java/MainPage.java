@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,5 +25,12 @@ public class MainPage {
     public String getUsername() {
         WebElement accountButton = wait.until(ExpectedConditions.visibilityOfElementLocated(toAccountLocator));
         return accountButton.getText();
+    }
+
+
+    public ChoicePage clickToMakeAChoiceButton(){
+        WebElement makeAChoiceButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='createNewArea makeChoice']//a")));
+        makeAChoiceButton.click();
+        return new ChoicePage(driver);
     }
 }
