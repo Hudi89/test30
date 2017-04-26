@@ -21,7 +21,7 @@ public class CreationFinishedPage {
         wait = new WebDriverWait(driver,5);
     }
 
-    public ExpectedCondition<List<WebElement>> getInitializationCondition(){
-        return ExpectedConditions.visibilityOfAllElementsLocatedBy(participationLinkLocator);
+    public ExpectedCondition<WebElement> getInitializationCondition(){
+        return ExpectedConditions.visibilityOfElementLocated(participationLinkLocator);
     }
 }
