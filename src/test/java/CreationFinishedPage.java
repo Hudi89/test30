@@ -14,6 +14,7 @@ import java.util.List;
 public class CreationFinishedPage {
     WebDriver driver;
     Wait<WebDriver> wait;
+    private By participationLinkLocator = By.id("participationLink");
 
     public CreationFinishedPage(WebDriver driver) {
         this.driver = driver;
@@ -21,6 +22,6 @@ public class CreationFinishedPage {
     }
 
     public ExpectedCondition<List<WebElement>> getInitializationCondition(){
-        return ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("participationLink"));
+        return ExpectedConditions.visibilityOfAllElementsLocatedBy(participationLinkLocator);
     }
 }
